@@ -1,0 +1,62 @@
+<div class="well" id="movieSection">
+	<div class="starter-template">
+	<div class="row">
+		<div class="col-md-4">
+			<p>
+				<%= image_tag(@movie.image, :size => "300x500") %> 
+			</p>
+		</div>
+
+		<div class="col-md-8">
+			<p id="notice">
+			<%= notice %>
+			</p>
+
+
+
+			<p>
+ 		 	<strong>Title:</strong>
+ 		 	<%= @movie.title %>
+			</p>
+
+			<p>
+ 			 <strong>Review:</strong>
+  			<%= @movie.review %>
+			</p>
+
+			<p>
+  			<strong>Year:</strong>
+  			<%= @movie.year %>
+			</p>
+
+			<p>
+  			<strong>Genre:</strong>
+  			<%= @movie.genre %>
+			</p>
+
+			<p>
+  			<strong>Synopsis:</strong>
+  			<%= @movie.synopsis %>
+			</p>
+			<body >
+			<h3><strong>Comments</strong></h3>
+				<% @comments.each do |comment| %>
+  			<div>
+    				<strong><%= current_user.first_name %></strong>
+    				<br />
+    				<p><%= comment.body %></p>
+    				<p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  			</div>
+			<% end %>
+			<%= render 'comments/form' %>
+			</body>
+		</div>
+	
+	</div>
+	</div>
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>
+
+
+
+</div>

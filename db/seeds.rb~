@@ -1,0 +1,11 @@
+# db/seeds.rb
+
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Movie.create!(title: 'The Terminator', review: 5, year: 1984, genre: 'Science Fiction', synopsis: 'A cyborg assassin is sent back in time to kill the mother of the savior of humanity.')

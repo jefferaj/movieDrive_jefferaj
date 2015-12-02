@@ -1,0 +1,100 @@
+<!-- app/views/layouts/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MovieDrive</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  
+   <style type="text/css">
+
+     body {background-color: #ff69b4; 
+     }
+
+/* #####################HTML for SEARCH BAR APPEARANCE ########################*/
+	#tfnewsearch{
+		float:left;
+		padding:0px 65px;
+	}
+
+	.tftextinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px; /*Size of the search font*/
+	}
+	.tfbutton {
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		color: #ffffff;
+		border: solid 1px #800080; /*Border color of the search button*/
+		background: #000000;
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+	}
+	.tfbutton:hover {
+		text-decoration: none;
+		background: #800080;
+	}
+	/* Fixes submit button height problem in Firefox */
+	.tfbutton::-moz-focus-inner {
+	  border: 0;
+	}
+	.tfclear{
+		clear:both;
+	}
+/* ############################################################################*/
+
+</style>
+</head>
+
+    <%= render 'shared/navigation' %>
+  
+<body>
+    <!-- ################### HTML for SEARCH BAR FUNCTIONALITY ###################-->
+	<div id="tfheader">
+		<form id="tfnewsearch" method="get" action="http://www.google.com">
+		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+		</form>
+	<div class="tfclear"></div>
+	</div>
+<!-- #########################################################################-->
+
+    <div id="main-container" class="container">
+	<div class="nav pull-right">
+<% if current_user %> 
+  <ul> 
+    <li><%= current_user.email %></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+  </ul> 
+<% else %> 
+  <ul> 
+    <li><%= link_to "Login", 'login' %></a></li> 
+    <li><%= link_to "Signup", 'signup' %></a></li> 
+  </ul> 
+<% end %>
+	</div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <% flash.each do |name, msg| -%>
+            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+          <% end -%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-23">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
